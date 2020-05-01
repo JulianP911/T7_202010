@@ -4,7 +4,7 @@ package model;
  * Clase LlaveComparendo que se basa por el objectid
  * @author Julian Padilla - Pablo Pastrana
  */
-public final class LlaveComparendo2 implements Comparable<LlaveComparendo2>
+public final class LlaveComparendo implements Comparable<LlaveComparendo>
 {
 	/**
 	 * Objectid del comparendo
@@ -16,7 +16,7 @@ public final class LlaveComparendo2 implements Comparable<LlaveComparendo2>
 	/**
 	 * Metodo constructor de la llave del comparendo
 	 */
-	public LlaveComparendo2(int pObjectid) 
+	public LlaveComparendo(int pObjectid) 
 	{
 		objectid = pObjectid;
 	}
@@ -34,7 +34,7 @@ public final class LlaveComparendo2 implements Comparable<LlaveComparendo2>
 	 * CompareTo para verificar si estan organizados por el objectid
 	 */
 	@Override
-	public int compareTo(LlaveComparendo2 pObjeto) 
+	public int compareTo(LlaveComparendo pObjeto) 
 	{
 		int resultado = 0;
 		

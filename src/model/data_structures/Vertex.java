@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Obtuvimos metodos de internet en la implementación con variaciones implementadas por nosotros
  * @param <K> Vertice de tipo generico
  */
-public class Vertex<K extends Comparable<K>,V>
+public class Vertex<K extends Comparable<K>,V,E>
 {
 	// Atributos
 	
@@ -27,18 +27,31 @@ public class Vertex<K extends Comparable<K>,V>
 	 */
     private int idNumumeroVertice;
     
-    private ArrayList<Edge<K>> outEdges;
+    /**
+     * Componente conectada
+     */
+    private int componenteConectado;
     
-    private ArrayList<Edge<K>> inEdges;
+    /**
+     * Arreglo con los arcos que salen del vertice
+     */
+    private ArrayList<Edge<K, E>> arcosSalen;
+    
+    /**
+     * Arreglo con los arcos que entran al vertice
+     */
+    private ArrayList<Edge<K, E>> arcosEntran;
 
     // Metodo constructor
     
-	public Vertex(K pIdVertice, V pValorVertice)
+	public Vertex(K pIdVertice, V pValorVertice, int pIdNumero)
 	{
 		this.idVeritice = pIdVertice;
 		this.valorVertice = pValorVertice;
-		outEdges = new ArrayList<Edge<K>>();
-		inEdges =  new ArrayList<Edge<K>>();
+		arcosSalen = new ArrayList<Edge<K,E>>();
+		arcosEntran =  new ArrayList<Edge<K,E>>();
+		componenteConectado = -1;
+		idNumumeroVertice = pIdNumero;
 	}
 	
 	/**
@@ -77,14 +90,48 @@ public class Vertex<K extends Comparable<K>,V>
 		valorVertice = pValor;
 	}
 	
-	public void addInEdge(Edge<K> e)
+	/**
+	 * Obtener componente conectado del vertice
+	 * @return Numero de la componente conectado
+	 */
+	public int getComponenteConectado()
 	{
-		inEdges.add(e);
+		return componenteConectado;
 	}
 	
-	public void addOutEdge(Edge<K> e)
+	/**
+	 * Cambiar componente conectado del vertice con la nueva que ingresa
+	 * @param Nueva componete a asociarle al vertice
+	 */
+	public void setComponenteConectado(int pComponente)
 	{
-		outEdges.add(e);
+		componenteConectado = pComponente;
+	}
+	
+	/**
+	 * Obtener arreglo con loa arcos que salen del vertice
+	 */
+	public ArrayList<Edge<K, E>> getArcosSaliente()
+	{
+		return arcosSalen;
+	}
+	
+	/**
+	 * Anadir a un array list los arcos que entran al vertice
+	 * @param pArco Arco entrante al vertice
+	 */
+	public void anadirArcoEntrante(Edge<K,E> pArco)
+	{
+		arcosEntran.add(pArco);
+	}
+	
+	/**
+	 * Anadir a un array list los arcos que salen del vertice
+	 * @param pArco Arco saliente al vertice
+	 */
+	public void anadirArcoSaliente(Edge<K,E> pArco)
+	{
+		arcosSalen.add(pArco);
 	}
 	
 	/**
@@ -92,16 +139,16 @@ public class Vertex<K extends Comparable<K>,V>
 	 * @param idVertexFin Vertice final
 	 * @return Arista entre los vertices que se especificaron
 	 */
-	public Edge<K> getEdge(K idVertexFin)
+	public Edge<K,E> getEdge(K idVertexFin)
 	{
-		Edge<K> searched = null;
-		for (int i = 0; i < outEdges.size() && searched == null; i++) 
+		Edge<K,E> encontrado = null;
+		for (int i = 0; i < arcosSalen.size() && encontrado == null; i++) 
 		{
-			if(outEdges.get(i).getIdVerticeFinal().compareTo(idVertexFin) == 0)
+			if(arcosSalen.get(i).getIdVerticeFinal().compareTo(idVertexFin) == 0)
 			{
-				searched = outEdges.get(i);
+				encontrado = arcosSalen.get(i);
 			}
 		}
-		return searched;
+		return encontrado;
 	}
 }
