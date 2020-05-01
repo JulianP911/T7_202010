@@ -70,4 +70,3 @@ public class Node <E>
 		this.item = pItem;
 	}
 }
-
