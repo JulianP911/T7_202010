@@ -1,17 +1,30 @@
 package model.logic;
 
 import java.io.BufferedReader;
+import GrafoJSON.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
+
 import model.Arco;
+import model.Comparendo;
 import model.InformacionArco;
 import model.InformacionVertice;
 import model.data_structures.Edge;
@@ -27,6 +40,11 @@ public class MallaVialBogota
 	 * Atributo para crear un grafo no dirigido
 	 */
 	private UnGraph<String, InformacionVertice, InformacionArco> UnDiGraph;
+	
+	/**
+	 * Atributo para crear un grafo no dirigido para el JSON
+	 */
+	private UnGraph<String, InformacionVertice, InformacionArco> UnDiGraph1;
 
 	/**
 	 * Tabla de hash donde se guardaran los vertices con su informacion
@@ -46,6 +64,7 @@ public class MallaVialBogota
 	public MallaVialBogota()
 	{
 		UnDiGraph = new UnGraph<String, InformacionVertice, InformacionArco>();
+		UnDiGraph1 = new UnGraph<String, InformacionVertice, InformacionArco>();
 		vertices = new SeparteChainingHashST<Integer, Vertex<String, InformacionVertice, InformacionArco>>();
 		arcos = new SeparteChainingHashST<String, Edge<String, InformacionArco>>();
 	}
@@ -242,5 +261,53 @@ public class MallaVialBogota
 		{
 			System.out.println("Error: "+ ex.toString());
 		}
+	}
+	
+	/**
+	 * Ruta del archivo JSON creado en el punto anterior
+	 */
+//	public static String PATH = "./data/UnDiGraph_small.json";
+	public static String PATH = "./data/UnDiGraph_Complete.json";
+	
+	/**
+	 * Carga JSON del archivo generado en el requerimiento anterior
+	 */
+	public void cargarGrafoJSON()
+	{
+		UnDiGraph1 = new UnGraph<String,InformacionVertice,InformacionArco>();
+
+		JsonReader reader;
+		try 
+		{
+			reader = new JsonReader(new FileReader(PATH));
+			JsonElement elem = JsonParser.parseReader(reader);
+			JsonArray e2 = elem.getAsJsonObject().get("Vertices").getAsJsonArray();
+
+			for(JsonElement e: e2) 
+			{
+				String id = e.getAsJsonObject().get("Vertice").getAsString();
+				double longitud = e.getAsJsonObject().get("Longitud").getAsDouble();
+				double latitud = e.getAsJsonObject().get("Latitud").getAsDouble();
+				UnDiGraph1.addVertex(id, new InformacionVertice(longitud, latitud));
+			}
+			
+			JsonArray e3 = elem.getAsJsonObject().get("Arcos").getAsJsonArray();
+			
+			for(JsonElement e: e3) 
+			{
+				String verticeSale = e.getAsJsonObject().get("Arco Salida").getAsString();
+				String verticeEntra = e.getAsJsonObject().get("Arco Entrada").getAsString();
+				double harvesiana = e.getAsJsonObject().get("Distancia Haversiana").getAsDouble();
+				UnDiGraph1.addEdge(verticeSale, verticeEntra, new InformacionArco(harvesiana));
+			}
+		} 
+		catch (FileNotFoundException  e) 
+		{
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		System.out.println("Numero de vertices: " + UnDiGraph1.V());
+		System.out.println("Numero de arcos: " + UnDiGraph1.E());
 	}
 }

@@ -20,7 +20,7 @@ public class View
 		System.out.println("Taller 7 -  Grafo No Dirigido");
 		System.out.println("1. Carga del Grafo");
 		System.out.println("2. Generar archivo json del Grafo No Dirigido");
-		System.out.println("3. Requerimiento 3: Consultar los comparendos con un id en un rango especifico.");
+		System.out.println("3. Cargar grafo desde el archivo JSON generado en el punto anterior");
 		System.out.println("4. Cerrar");
 	}
 

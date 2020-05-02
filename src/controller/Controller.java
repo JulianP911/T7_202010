@@ -54,7 +54,9 @@ public class Controller {
 				break;
 				
 			case 3:
-				
+				System.out.println("El grafo desde el archivo JSON se esta cargando");
+				mallaVial.cargarGrafoJSON();
+				System.out.println("Se cargo adecuadamente");
 				break;
 
 			case 4:

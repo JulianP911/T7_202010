@@ -24,7 +24,7 @@ public class Modelo
 	public static String PATH = "./data/comparendos_DEI_2018_Bogotá_D.C_small.geojson";
 	//	public static String PATH = "./data/comparendos_DEI_2018_Bogotá_50000_.geojson";
     //	public static String PATH = "./data/comparendos_DEI_2018_Bogotá_D.C.geojson";
-
+	
 	/**
 	 * Metodo que hace la carga de los datos comparendos
 	 * @return Una lista con los comparendos leidos
