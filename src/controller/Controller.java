@@ -3,14 +3,16 @@ package controller;
 import java.util.Scanner;
 
 import Mapa.Mapa;
+import Mapa.Mapa2;
+import model.EstacionPolicia;
 import model.logic.MallaVialBogota;
-//import model.logic.Modelo;
+import model.logic.Modelo;
 import view.View;
 
 public class Controller {
 
 	/* Instancia del Modelo*/
-//	private Modelo modelo;
+	private Modelo modelo;
 	
 	/* Instancia del Malla vial*/
 	private MallaVialBogota mallaVial;
@@ -25,7 +27,7 @@ public class Controller {
 	public Controller ()
 	{
 		view = new View();
-//		modelo = new Modelo();
+		modelo = new Modelo();
 		mallaVial = new MallaVialBogota();
 	}
 
@@ -62,10 +64,27 @@ public class Controller {
 
 			case 4:
 				@SuppressWarnings("unused") 
-				Mapa temp = new Mapa("Grafito");
+				Mapa temp = new Mapa("Grafo con Zona Delimitada");
 				break;
 				
 			case 5:
+				int numeroEstaciones = modelo.cargarDatosEstacionesPolicia().size();
+				System.out.println("El numero de estaciones de policias en Bogotá es: " + numeroEstaciones);
+				
+				view.printMessage("Estas son las estaciones de policia en Bogotá:");
+				for(int i = 0; i < numeroEstaciones; i++)
+				{
+					EstacionPolicia actual = modelo.cargarDatosEstacionesPolicia().get(i);
+					view.printMessage(actual.getObjectId() + ", " + actual.getEpoNombre() + ", " + actual.getEpoIdentifi() + ", " + actual.getEpoDir_sitio() + ", " + actual.getEpoHorario() + ", " + actual.getEpoTelefono() + ", " + actual.getEpoCelectr() + ", Longitud: " + actual.getEpoLongitud() + ", Latitud: " + actual.getEpoLatitud());
+				}
+				break;
+				
+			case 6:
+				@SuppressWarnings("unused") 
+				Mapa2 temp1 = new Mapa2("Grafo con Estaciones de policia");
+				break;
+				
+			case 7:
 				lector.close();
 				fin = true;
 				break;

@@ -4,11 +4,18 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import com.teamdev.jxmaps.Circle;
+import com.teamdev.jxmaps.CircleOptions;
+import com.teamdev.jxmaps.LatLng;
+import com.teamdev.jxmaps.Map;
+import com.teamdev.jxmaps.MapOptions;
 import com.teamdev.jxmaps.MapReadyHandler;
+import com.teamdev.jxmaps.MapStatus;
+import com.teamdev.jxmaps.MapTypeControlOptions;
+import com.teamdev.jxmaps.Polygon;
 import com.teamdev.jxmaps.swing.MapView;
-import com.teamdev.jxmaps.*;
 
-public class Mapa extends MapView
+public class Mapa2 extends MapView
 {
 	/**
 	 * Serial version Mapa
@@ -24,7 +31,7 @@ public class Mapa extends MapView
 	 * Metodo constructor del mapa
 	 * @param pNombre Nombre del mapa
 	 */
-	public Mapa(String pNombre)
+	public Mapa2(String pNombre)
 	{
 		JFrame frame = new JFrame(pNombre);
 		setOnMapReadyHandler(new MapReadyHandler() {
@@ -69,6 +76,8 @@ public class Mapa extends MapView
 		LatLng vertice2 = new LatLng(latMax,lonMax);
 		LatLng vertice3 = new LatLng(latMin,lonMax);
 		LatLng vertice4 = new LatLng(latMax,lonMin);
+		LatLng vertice5 = new LatLng(4.60894345,-74.08880157);
+		LatLng vertice6 = new LatLng(4.6153082,-74.06631182);
 		arco1[0] = vertice1;
 		arco1[1] = vertice3;
 		arco2[0] = vertice2;
@@ -105,6 +114,20 @@ public class Mapa extends MapView
 		CircleOptions op4 = new CircleOptions();
 		op4.setFillColor("#ff0000");
 		ver4.setOptions(op4);
+		
+		Circle ver5 = new Circle(map);
+		ver5.setCenter(vertice5);
+		ver5.setRadius(20.0);
+		CircleOptions op5 = new CircleOptions();
+		op5.setFillColor("#ff0000");
+		ver5.setOptions(op5);
+		
+		Circle ver6 = new Circle(map);
+		ver6.setCenter(vertice6);
+		ver6.setRadius(20.0);
+		CircleOptions op6 = new CircleOptions();
+		op6.setFillColor("#ff0000");
+		ver6.setOptions(op6);
 		
 		Polygon union1 = new Polygon(map);
 		union1.setPath(arco1);

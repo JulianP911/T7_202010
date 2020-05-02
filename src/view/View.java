@@ -22,6 +22,10 @@ public class View
 		System.out.println("2. Generar archivo json del Grafo No Dirigido");
 		System.out.println("3. Cargar grafo desde el archivo JSON generado en el punto anterior");
 		System.out.println("4. Mostrar mapa con las cordenadas asignadas en la guia");
+		System.out.println("5. Carga archivo estaciones de policia");
+		System.out.println("6. Mostrar mapa con las estaciones de policias");
+		System.out.println("7. Cerrar");
+
 	}
 
 	/**

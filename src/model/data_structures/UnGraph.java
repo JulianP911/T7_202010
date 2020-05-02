@@ -6,6 +6,8 @@ import java.util.ArrayList;
  * Clase del Grafo no dirigido para Taller 7
  * @author Julian Padilla - Pablo Pastrana
  * Los metodos de está clase fueron obtenidos del libro Algorthims 4 edition - Universidad de Princeton
+ * Otros metodos se obtuvieron de GeeksAndGeeks and partes de StackOverFlowcon ciertas variaciones de acuerdo con los requisitos establecidos
+ * Asimismo se realizaron variaciones en algunos de ellos
  * Autores de los metodos son: Robert Sedgewick y Kevin Wayne
  */
 public class UnGraph<K extends Comparable<K>,V,E>
@@ -282,7 +284,7 @@ public class UnGraph<K extends Comparable<K>,V,E>
 
 	/**
 	 * DFS para el grafo no dirigido - se utilizo partes de codigo de internet
-	 * Derechos de autor: Carlos Infante 
+	 * Derechos de autor: Geeks for Geeks y StackOverFlow
 	 * @param vertex Vertice donde se empieza hacer el Dfs
 	 */
 	public void dfs(K vertex)
