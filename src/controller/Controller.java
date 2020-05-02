@@ -2,14 +2,15 @@ package controller;
 
 import java.util.Scanner;
 
+import Mapa.Mapa;
 import model.logic.MallaVialBogota;
-import model.logic.Modelo;
+//import model.logic.Modelo;
 import view.View;
 
 public class Controller {
 
 	/* Instancia del Modelo*/
-	private Modelo modelo;
+//	private Modelo modelo;
 	
 	/* Instancia del Malla vial*/
 	private MallaVialBogota mallaVial;
@@ -24,7 +25,7 @@ public class Controller {
 	public Controller ()
 	{
 		view = new View();
-		modelo = new Modelo();
+//		modelo = new Modelo();
 		mallaVial = new MallaVialBogota();
 	}
 
@@ -54,12 +55,17 @@ public class Controller {
 				break;
 				
 			case 3:
-				System.out.println("El grafo desde el archivo JSON se esta cargando");
+				System.out.println("El grafo desde el archivo JSON se esta cargando ...");
 				mallaVial.cargarGrafoJSON();
 				System.out.println("Se cargo adecuadamente");
 				break;
 
 			case 4:
+				@SuppressWarnings("unused") 
+				Mapa temp = new Mapa("Grafito");
+				break;
+				
+			case 5:
 				lector.close();
 				fin = true;
 				break;

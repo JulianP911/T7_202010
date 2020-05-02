@@ -1,30 +1,23 @@
 package model.logic;
 
 import java.io.BufferedReader;
-import GrafoJSON.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
 import model.Arco;
-import model.Comparendo;
 import model.InformacionArco;
 import model.InformacionVertice;
 import model.data_structures.Edge;
@@ -49,11 +42,13 @@ public class MallaVialBogota
 	/**
 	 * Tabla de hash donde se guardaran los vertices con su informacion
 	 */
+	@SuppressWarnings("unused")
 	private SeparteChainingHashST<Integer, Vertex<String, InformacionVertice, InformacionArco>> vertices;
 
 	/**
 	 * Tabla de hash donde se guardaran los arcos con su informacion de costo
 	 */
+	@SuppressWarnings("unused")
 	private SeparteChainingHashST<String, Edge<String, InformacionArco>> arcos;
 
 	// Metodo Constructor
