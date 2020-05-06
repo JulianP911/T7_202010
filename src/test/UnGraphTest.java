@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import model.InformacionArco;
+import model.data_structures.Edge;
 import model.data_structures.UnGraph;
 
 /**
@@ -45,15 +46,13 @@ class UnGraphTest
 		UnGraph1.addVertex("1", new ArrayList<Integer>());
 		UnGraph1.addVertex("5", new ArrayList<Integer>());
 		UnGraph1.addVertex("2", new ArrayList<Integer>());
-		UnGraph1.addVertex("1", new ArrayList<Integer>());
 		UnGraph1.addVertex("3", new ArrayList<Integer>());
 		UnGraph1.addVertex("6", new ArrayList<Integer>());
 		UnGraph1.addVertex("4", new ArrayList<Integer>());
 		
 		UnGraph1.addEdge("1", "2", new InformacionArco(1.0));
 		UnGraph1.addEdge("3", "6", new InformacionArco(3.0));
-		UnGraph1.addEdge("1", "7", new InformacionArco(6.0));
-		UnGraph1.addEdge("7", "6", new InformacionArco(1.0));
+		UnGraph1.addEdge("1", "6", new InformacionArco(6.0));
 		UnGraph1.addEdge("4", "2", new InformacionArco(2.0));
 		UnGraph1.addEdge("3", "5", new InformacionArco(2.0));
 	}
@@ -133,7 +132,13 @@ class UnGraphTest
 	@Test
 	void testIniciarDfs() 
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		//setUp3();
+		
+		UnGraph1.iniciarDfs();
+		UnGraph2.iniciarDfs();
+		//UnGraph3.iniciarDfs();
 	}
 
 	/**
@@ -142,7 +147,22 @@ class UnGraphTest
 	@Test
 	void testGetMarkedDfs() 
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+
+		boolean[]w = UnGraph1.getMarkedDfs();
+		assertEquals(null, w);
+		
+		boolean[]ww = UnGraph2.getMarkedDfs();
+		assertEquals(null, ww);
+
+		//boolean[]www = UnGraph3.getMarkedDfs();
+		//System.out.print("3"+www);
+				
+		//for (int i = 0; i < w.length; i++)
+		//{
+		//	System.out.println(w[i]);
+		//}
 	}
 
 	/**
@@ -151,7 +171,11 @@ class UnGraphTest
 	@Test
 	void testV() 
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		assertEquals(6, UnGraph1.V());
+		assertEquals(10, UnGraph2.V());
 	}
 
 	/**
@@ -160,7 +184,11 @@ class UnGraphTest
 	@Test
 	void testE()
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		assertEquals(5, UnGraph1.E());
+		assertEquals(10, UnGraph2.E());
 	}
 
 	/**
@@ -169,7 +197,11 @@ class UnGraphTest
 	@Test
 	void testContadorArcosUnGraph() 
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+ 
+		assertEquals(0, UnGraph1.contadorArcosUnGraph());
+		assertEquals(0, UnGraph2.contadorArcosUnGraph());
 	}
 
 	/**
@@ -178,7 +210,15 @@ class UnGraphTest
 	@Test
 	void testAddVertex() 
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		UnGraph1.addVertex("99", new ArrayList<Integer>());
+		UnGraph2.addVertex("99", 99000);
+
+		assertEquals(7, UnGraph1.V());
+		assertEquals(11, UnGraph2.V());
+
 	}
 
 	/**
@@ -187,7 +227,15 @@ class UnGraphTest
 	@Test
 	void testAddEdge() 
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		UnGraph1.addEdge("1", "5", new InformacionArco(4.0));
+		UnGraph2.addEdge("10", "2", new InformacionArco(1.0));
+		
+		assertEquals(6, UnGraph1.E());
+		assertEquals(11, UnGraph2.E());
+
 	}
 
 	/**
@@ -196,7 +244,12 @@ class UnGraphTest
 	@Test
 	void testGetInfoVertex() 
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		assertEquals(UnGraph1.getInfoVertex("1"), UnGraph1.getInfoVertex("4") );
+		assertEquals(3000, UnGraph2.getInfoVertex("3") );
+
 	}
 
 	/**
@@ -205,7 +258,17 @@ class UnGraphTest
 	@Test
 	void testSetInfoVertex() 
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		ArrayList <Integer> nueva = new ArrayList <Integer>();
+		nueva.add(7);
+		
+		UnGraph1.setInfoVertex("3", nueva);
+		UnGraph2.setInfoVertex("3", 37);
+		
+		assertEquals(7, UnGraph1.getInfoVertex("3").get(0) );
+		assertEquals(37, UnGraph2.getInfoVertex("3") );
 	}
 
 	/**
@@ -214,7 +277,12 @@ class UnGraphTest
 	@Test
 	void testGetCostArc()
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		assertEquals(-1.0, UnGraph1.getCostArc("4", "5") );
+		assertEquals(-1.0, UnGraph2.getCostArc("4", "5") );
+
 	}
 
 	/**
@@ -223,7 +291,14 @@ class UnGraphTest
 	@Test
 	void testSetCostArc()
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		UnGraph1.setCostArc("3", "6", new InformacionArco(333.0));
+		UnGraph2.setCostArc("3", "6", new InformacionArco(333.0));
+		
+		assertEquals(-1.0, UnGraph1.getCostArc("3", "1") );
+	 	assertEquals(-1.0, UnGraph2.getCostArc("3", "1") );
 	}
 
 	/**
@@ -232,7 +307,13 @@ class UnGraphTest
 	@Test
 	void testGetArco() 
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		Edge<String, InformacionArco> edy = new Edge ("3", "6", new InformacionArco(3.0));
+		
+		//assertEquals(edy, UnGraph1.getArco("3", "6"));
+	 	assertEquals(null, UnGraph2.getArco("3", "1") );
 	}
 
 	/**
@@ -241,7 +322,12 @@ class UnGraphTest
 	@Test
 	void testUncheck() 
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		UnGraph1.uncheck();
+		UnGraph2.uncheck();
+
 	}
 
 	/**
@@ -250,7 +336,12 @@ class UnGraphTest
 	@Test
 	void testDfs()
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		UnGraph1.dfs("1");
+		UnGraph2.dfs("4");
+		
 	}
 
 	/**
@@ -259,7 +350,11 @@ class UnGraphTest
 	@Test
 	void testCC() 
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		//assertEquals(5, UnGraph1.CC());
+	 	//assertEquals(7, UnGraph2.CC());
 	}
 
 	/**
@@ -268,6 +363,12 @@ class UnGraphTest
 	@Test
 	void testAdj() 
 	{
-		fail("Not yet implemented");
+		setUp1();
+		setUp2();
+		
+		UnGraph1.adj("1");
+		UnGraph2.adj("1");
+
+
 	}
 }

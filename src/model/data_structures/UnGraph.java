@@ -84,7 +84,8 @@ public class UnGraph<K extends Comparable<K>,V,E>
 		this.numeroVertices = V;
 		this.numeroAristas = 0;
 		adj = (Bag<Integer>[]) new Bag[V];
-		for (int v = 0; v < V; v++) {
+		for (int v = 0; v < V; v++) 
+		{
 			adj[v] = new Bag<Integer>();
 		}
 	}
@@ -134,11 +135,12 @@ public class UnGraph<K extends Comparable<K>,V,E>
 	{ 
 		int sum = 0; 
 
-		for (int i = 0; i < numeroVertices; i++) 
+		if (adj != null) {
+		for (int i = 0; i < adj.length; i++) 
 		{
 			sum += adj[i].size(); 
 		}
-
+		}
 		return sum / 2; 
 	}
 
